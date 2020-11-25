@@ -18,7 +18,8 @@ This kustomization will create the following Kubernetes Resources
     * An example [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) + [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) both named `keycloak-postgres`.
 
 ## Configuration
-The application can be configured by overwriting the ConfigMap *dex-server*s key *config.yml* with a valid Dex
-configuration file. 
-This file can have references to environment variables via `$KEY` syntax.
-In addition the Secret *dex-server* serves as a provider for the servers environment.
+The application can be configured through the generated ConfigMaps and Secrets as they get injected as 
+environment variables.
+
+*Note: The main server backend has access to both its own and the databases ConfigMap + Secret. 
+This can be used to keep the database credentials DRY.*
