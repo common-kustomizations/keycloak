@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  labels:
+    app.kubernetes.io/component: webserver
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: webserver
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: webserver
+
+    spec:
+      volumes:
+        - name: secrets
+          secret:
+            secretName: keycloak
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: keycloak
+            - secretRef:
+                name: keycloak
+            - configMapRef:
+                name: keycloak-postgres
+            - secretRef:
+                name: keycloak-postgres
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: secrets
+              mountPath: "/opt/jboss/secrets"
+          readinessProbe:
+            httpGet:
+              path: /auth/realms/master
+              port: http
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  labels:
+    app.kubernetes.io/component: webserver
+spec:
+  selector:
+    app.kubernetes.io/component: webserver
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
