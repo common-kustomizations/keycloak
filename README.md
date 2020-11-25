@@ -4,7 +4,8 @@
 ## Resources
 * [Homepage](https://www.keycloak.org/)
 * [Documentation](https://www.keycloak.org/documentation)
-* [Container Specific Documentation](https://github.com/keycloak/keycloak-containers/blob/master/server/README.md)
+* [Container Specific Keycloak Documentation](https://github.com/keycloak/keycloak-containers/blob/master/server/README.md)
+* [Container Specific Postgres Documentation](https://github.com/docker-library/docs/blob/master/postgres/README.md)
 
 ## kustomization
 This kustomization will create the following Kubernetes Resources
