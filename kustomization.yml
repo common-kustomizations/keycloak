@@ -12,7 +12,7 @@ resources:
 
 images:
   - name: quay.io/keycloak/keycloak
-    newTag: latest
+    newTag: "11.0.3"
   - name: docker.io/postgres
     newTag: "13"
 
