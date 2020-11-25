@@ -42,6 +42,10 @@ spec:
             httpGet:
               path: /auth/realms/master
               port: http
+          livenessProbe:
+            httpGet:
+              path: /auth/realms/master
+              port: http
 
 
 
