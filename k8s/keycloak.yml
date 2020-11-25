@@ -46,6 +46,11 @@ spec:
             httpGet:
               path: /auth/realms/master
               port: http
+          startupProbe:
+            httpGet:
+              port: http
+              path: /auth/realms/master
+            failureThreshold: 10
 
 
 
