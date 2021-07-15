@@ -28,10 +28,22 @@ spec:
                 name: keycloak
             - secretRef:
                 name: keycloak
-            - configMapRef:
-                name: keycloak-postgres
-            - secretRef:
-                name: keycloak-postgres
+          env:
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-postgres
+                  key: POSTGRES_DB
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-postgres
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-postgres
+                  key: POSTGRES_PASSWORD
           ports:
             - name: http
               containerPort: 8080
