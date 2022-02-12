@@ -50,19 +50,6 @@ spec:
           volumeMounts:
             - name: secrets
               mountPath: "/opt/jboss/secrets"
-          readinessProbe:
-            httpGet:
-              path: /auth/realms/master
-              port: http
-          livenessProbe:
-            httpGet:
-              path: /auth/realms/master
-              port: http
-          startupProbe:
-            httpGet:
-              port: http
-              path: /auth/realms/master
-            failureThreshold: 10
 
 
 
